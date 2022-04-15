@@ -20,6 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>&quot;Let me in&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Allow app to know your current location&quot;</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

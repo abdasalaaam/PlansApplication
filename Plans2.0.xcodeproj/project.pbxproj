@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD6C5AD12804D8DA00854929 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */; };
+		DD6C5AD32804E16B00854929 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C5AD22804E16A00854929 /* SearchViewController.swift */; };
+		DD8CCA4D27FFAE8F00C37C10 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA4C27FFAE8F00C37C10 /* Plan.swift */; };
+		DD8CCA4F27FFAE9900C37C10 /* PlanListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA4E27FFAE9900C37C10 /* PlanListStyle.swift */; };
+		DD8CCA5327FFAEA600C37C10 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA5227FFAEA600C37C10 /* User.swift */; };
+		DD8CCA572803443600C37C10 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA562803443600C37C10 /* InviteViewController.swift */; };
+		DDABE52F2808A364005B3278 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDABE52E2808A363005B3278 /* MapKit.framework */; };
+		DDABE5412808B5AE005B3278 /* UIContentConfiguration+Stateless.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5402808B5AE005B3278 /* UIContentConfiguration+Stateless.swift */; };
+		DDABE5452808B5BA005B3278 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5442808B5BA005B3278 /* CreatePlanViewController.swift */; };
+		DDABE5472808B5BF005B3278 /* UIView+PinnedSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5462808B5BF005B3278 /* UIView+PinnedSubview.swift */; };
+		DDABE5492808B5F9005B3278 /* DatePickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5482808B5F9005B3278 /* DatePickerContentView.swift */; };
+		DDABE54B2808B604005B3278 /* StartTimePickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE54A2808B604005B3278 /* StartTimePickerContentView.swift */; };
+		DDABE54D2808B60E005B3278 /* EndTimePickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE54C2808B60E005B3278 /* EndTimePickerContentView.swift */; };
+		DDABE54F2808B617005B3278 /* TextFieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE54E2808B617005B3278 /* TextFieldContentView.swift */; };
+		DDABE5512808B631005B3278 /* AddressFieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5502808B631005B3278 /* AddressFieldContentView.swift */; };
+		DDCADC9A27ECEF93005E23FC /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADC9827ECEF93005E23FC /* EventListViewController.swift */; };
+		DDCADC9D27ECF8FD005E23FC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADC9C27ECF8FD005E23FC /* SignUpViewController.swift */; };
+		DDCADC9F27ED020F005E23FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADC9E27ED020F005E23FC /* LoginViewController.swift */; };
+		DDCADCA127ED0634005E23FC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADCA027ED0634005E23FC /* MapViewController.swift */; };
+		DDE084D027F236010064508D /* BackEndConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE084CF27F236010064508D /* BackEndConnection.swift */; };
+		DDE084D227F23EE40064508D /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE084D127F23EE40064508D /* CreatePlanViewController.swift */; };
 		DDFF1C3527C70C4B00951E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3427C70C4B00951E00 /* AppDelegate.swift */; };
 		DDFF1C3727C70C4B00951E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3627C70C4B00951E00 /* SceneDelegate.swift */; };
 		DDFF1C3927C70C4B00951E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3827C70C4B00951E00 /* ViewController.swift */; };
@@ -35,6 +56,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		DD6C5AD22804E16A00854929 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DD8CCA4C27FFAE8F00C37C10 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plan.swift; path = ../../Models/Plan.swift; sourceTree = "<group>"; };
+		DD8CCA4E27FFAE9900C37C10 /* PlanListStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanListStyle.swift; path = ../../Models/PlanListStyle.swift; sourceTree = "<group>"; };
+		DD8CCA5227FFAEA600C37C10 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../Models/User.swift; sourceTree = "<group>"; };
+		DD8CCA562803443600C37C10 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		DDABE52E2808A363005B3278 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DDABE5402808B5AE005B3278 /* UIContentConfiguration+Stateless.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIContentConfiguration+Stateless.swift"; sourceTree = "<group>"; };
+		DDABE5442808B5BA005B3278 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
+		DDABE5462808B5BF005B3278 /* UIView+PinnedSubview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinnedSubview.swift"; sourceTree = "<group>"; };
+		DDABE5482808B5F9005B3278 /* DatePickerContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerContentView.swift; sourceTree = "<group>"; };
+		DDABE54A2808B604005B3278 /* StartTimePickerContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTimePickerContentView.swift; sourceTree = "<group>"; };
+		DDABE54C2808B60E005B3278 /* EndTimePickerContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTimePickerContentView.swift; sourceTree = "<group>"; };
+		DDABE54E2808B617005B3278 /* TextFieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldContentView.swift; sourceTree = "<group>"; };
+		DDABE5502808B631005B3278 /* AddressFieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFieldContentView.swift; sourceTree = "<group>"; };
+		DDCADC9827ECEF93005E23FC /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		DDCADC9C27ECF8FD005E23FC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DDCADC9E27ED020F005E23FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DDCADCA027ED0634005E23FC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DDE084CF27F236010064508D /* BackEndConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackEndConnection.swift; sourceTree = "<group>"; };
+		DDE084D127F23EE40064508D /* CreatePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		DDFF1C3127C70C4B00951E00 /* Plans2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plans2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFF1C3427C70C4B00951E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDFF1C3627C70C4B00951E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDABE52F2808A364005B3278 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDABE52D2808A363005B3278 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDABE52E2808A363005B3278 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DDFF1C2827C70C4B00951E00 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +134,7 @@
 				DDFF1C4A27C70C4D00951E00 /* Plans2.0Tests */,
 				DDFF1C5527C70C4D00951E00 /* Plans2.0UITests */,
 				DDFF1C3227C70C4B00951E00 /* Products */,
+				DDABE52D2808A363005B3278 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +151,33 @@
 		DDFF1C3327C70C4B00951E00 /* Plans2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				DDABE5482808B5F9005B3278 /* DatePickerContentView.swift */,
+				DDABE54E2808B617005B3278 /* TextFieldContentView.swift */,
+				DDABE54A2808B604005B3278 /* StartTimePickerContentView.swift */,
+				DDABE5502808B631005B3278 /* AddressFieldContentView.swift */,
+				DDABE54C2808B60E005B3278 /* EndTimePickerContentView.swift */,
+				DDABE5462808B5BF005B3278 /* UIView+PinnedSubview.swift */,
+				DDABE5442808B5BA005B3278 /* CreatePlanViewController.swift */,
+				DDABE5402808B5AE005B3278 /* UIContentConfiguration+Stateless.swift */,
 				DDFF1C3427C70C4B00951E00 /* AppDelegate.swift */,
 				DDFF1C3627C70C4B00951E00 /* SceneDelegate.swift */,
-				DDFF1C3827C70C4B00951E00 /* ViewController.swift */,
-				DDFF1C3A27C70C4B00951E00 /* Main.storyboard */,
-				DDFF1C3D27C70C4D00951E00 /* Assets.xcassets */,
 				DDFF1C3F27C70C4D00951E00 /* LaunchScreen.storyboard */,
 				DDFF1C4227C70C4D00951E00 /* Info.plist */,
+				DDFF1C3D27C70C4D00951E00 /* Assets.xcassets */,
+				DDFF1C3A27C70C4B00951E00 /* Main.storyboard */,
+				DD8CCA4C27FFAE8F00C37C10 /* Plan.swift */,
+				DD8CCA5227FFAEA600C37C10 /* User.swift */,
+				DD8CCA4E27FFAE9900C37C10 /* PlanListStyle.swift */,
+				DDCADC9C27ECF8FD005E23FC /* SignUpViewController.swift */,
+				DDCADC9E27ED020F005E23FC /* LoginViewController.swift */,
+				DDCADCA027ED0634005E23FC /* MapViewController.swift */,
+				DDFF1C3827C70C4B00951E00 /* ViewController.swift */,
+				DDE084D127F23EE40064508D /* CreatePlanViewController.swift */,
+				DDE084CF27F236010064508D /* BackEndConnection.swift */,
+				DDCADC9827ECEF93005E23FC /* EventListViewController.swift */,
+				DD8CCA562803443600C37C10 /* InviteViewController.swift */,
+				DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */,
+				DD6C5AD22804E16A00854929 /* SearchViewController.swift */,
 			);
 			path = Plans2.0;
 			sourceTree = "<group>";
@@ -258,9 +330,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDABE5472808B5BF005B3278 /* UIView+PinnedSubview.swift in Sources */,
+				DD8CCA4F27FFAE9900C37C10 /* PlanListStyle.swift in Sources */,
+				DDABE5452808B5BA005B3278 /* CreatePlanViewController.swift in Sources */,
+				DDABE54F2808B617005B3278 /* TextFieldContentView.swift in Sources */,
+				DDCADC9F27ED020F005E23FC /* LoginViewController.swift in Sources */,
+				DDABE54D2808B60E005B3278 /* EndTimePickerContentView.swift in Sources */,
+				DDABE5492808B5F9005B3278 /* DatePickerContentView.swift in Sources */,
+				DDABE54B2808B604005B3278 /* StartTimePickerContentView.swift in Sources */,
+				DD6C5AD32804E16B00854929 /* SearchViewController.swift in Sources */,
 				DDFF1C3927C70C4B00951E00 /* ViewController.swift in Sources */,
+				DDABE5412808B5AE005B3278 /* UIContentConfiguration+Stateless.swift in Sources */,
+				DDCADC9A27ECEF93005E23FC /* EventListViewController.swift in Sources */,
+				DDE084D227F23EE40064508D /* CreatePlanViewController.swift in Sources */,
 				DDFF1C3527C70C4B00951E00 /* AppDelegate.swift in Sources */,
+				DD8CCA5327FFAEA600C37C10 /* User.swift in Sources */,
 				DDFF1C3727C70C4B00951E00 /* SceneDelegate.swift in Sources */,
+				DD8CCA572803443600C37C10 /* InviteViewController.swift in Sources */,
+				DD8CCA4D27FFAE8F00C37C10 /* Plan.swift in Sources */,
+				DD6C5AD12804D8DA00854929 /* FriendListViewController.swift in Sources */,
+				DDE084D027F236010064508D /* BackEndConnection.swift in Sources */,
+				DDABE5512808B631005B3278 /* AddressFieldContentView.swift in Sources */,
+				DDCADC9D27ECF8FD005E23FC /* SignUpViewController.swift in Sources */,
+				DDCADCA127ED0634005E23FC /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
