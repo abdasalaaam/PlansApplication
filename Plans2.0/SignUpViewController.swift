@@ -4,7 +4,6 @@
 //
 //  Created by Alex Pallozzi on 3/24/22.
 //
-
 import UIKit
 
 public class SignUpViewController: UIViewController {
@@ -21,13 +20,13 @@ public class SignUpViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!;
     
+    public var publicUsername : String = "";
+    
     private let label: UILabel = {
         let label = UILabel();
         label.textColor = .systemRed;
-        label.text = "Invalid Sign Up Credentials. \n Make sure your username is unique, and your password is 7 or more characters!";
         return label;
     }();
-    private var currentUser = User(fullName: "Alex Pallozzi", userName: "Zandi102", email: "alexanderpallozzi@gmail.com", phone: 9784939211, age: 21, password: "Ozzie123");
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,30 +40,52 @@ public class SignUpViewController: UIViewController {
     @IBAction func unwindToSignup(_ sender: UIStoryboardSegue) {}
     
     @objc func register () {
-        let x = passwordField.text!;
-        if(x.count < 7) {
+        let passLength = passwordField.text!;
+        let userLength = passwordField.text!;
+        if(passLength.count < 7 || userLength.count < 2) {
             view.addSubview(label);
-            label.frame = CGRect.init(x: view.frame.size.width - 320, y: view.frame.size.height - 200, width: 500, height: 100);
+            label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+            label.textAlignment = .center
+            label.text = "Invalid user credentials."
             usernameField.text = "";
             passwordField.text = "";
             emailField.text = "";
             phoneNumberField.text = "";
         }
         else {
-            switchScreen();
-            usernameField.text = "";
-            passwordField.text = "";
-            emailField.text = "";
-            phoneNumberField.text = "";
-            label.frame = CGRect.init(x: view.frame.size.width - 1000, y: view.frame.size.height - 200, width: 500, height: 100);
+            let db = DBManager();
+            let url = URL(string: "http://abdasalaam.com/Functions/register.php")!
+            let parameters: [String: Any] = [
+                "username":usernameField.text!,
+                "password":passwordField.text!,
+            ]
+            let message = db.postRequest(url, parameters)
+            if (message == "User created successfully") {
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                usernameField.text = "";
+                passwordField.text = "";
+                emailField.text = "";
+                phoneNumberField.text = "";
+                //THIS PUBLIC USERNAME VAR WILL ONLY BE INSTANTIATED IF THERE IS SUCCESSFUL LOGIN
+                //publicUsername will be used in other view controllers to find the info related to the user logged in
+                publicUsername = usernameField.text!;
+                switchScreen();
+            }
+            else if (message == "User already exist") {
+                print(message)
+                view.addSubview(label);
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                label.textAlignment = .center
+                label.text = "Username already taken."
+            }
+            else {
+                view.addSubview(label);
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                label.textAlignment = .center
+                label.text = "Error. Please try again."
+            }
         }
     }
-    
-    @objc func giveMeTheTransition() {
-        let loginViewController:LoginViewController = LoginViewController()
-
-        self.present(loginViewController, animated: true, completion: nil)
-     }
     
     @objc func switchScreen() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main);
@@ -72,15 +93,4 @@ public class SignUpViewController: UIViewController {
             self.present(viewController, animated: false, completion: nil);
         }
     }
-    func getUser() -> User {
-        return self.currentUser
-    }
-    
-    /*@objc func switchScreen() {
-        let viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }*/
-    
-
-
 }

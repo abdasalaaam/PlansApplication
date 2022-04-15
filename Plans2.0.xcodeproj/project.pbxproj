@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EF02B59280A0BE1000893A8 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF02B58280A0BE1000893A8 /* DBManager.swift */; };
 		DD6C5AD12804D8DA00854929 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */; };
 		DD6C5AD32804E16B00854929 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C5AD22804E16A00854929 /* SearchViewController.swift */; };
 		DD8CCA4D27FFAE8F00C37C10 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA4C27FFAE8F00C37C10 /* Plan.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EF02B58280A0BE1000893A8 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		DD6C5AD22804E16A00854929 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DD8CCA4C27FFAE8F00C37C10 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plan.swift; path = ../../Models/Plan.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				DD8CCA562803443600C37C10 /* InviteViewController.swift */,
 				DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */,
 				DD6C5AD22804E16A00854929 /* SearchViewController.swift */,
+				3EF02B58280A0BE1000893A8 /* DBManager.swift */,
 			);
 			path = Plans2.0;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				DD8CCA572803443600C37C10 /* InviteViewController.swift in Sources */,
 				DD8CCA4D27FFAE8F00C37C10 /* Plan.swift in Sources */,
 				DD6C5AD12804D8DA00854929 /* FriendListViewController.swift in Sources */,
+				3EF02B59280A0BE1000893A8 /* DBManager.swift in Sources */,
 				DDE084D027F236010064508D /* BackEndConnection.swift in Sources */,
 				DDABE5512808B631005B3278 /* AddressFieldContentView.swift in Sources */,
 				DDCADC9D27ECF8FD005E23FC /* SignUpViewController.swift in Sources */,
