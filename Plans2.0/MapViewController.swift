@@ -25,21 +25,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
        backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
         determineCurrentLocation();
         addMapOverlay();
+        mapView.delegate = self
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            // get the current location of the user
-           guard let locationValue : CLLocationCoordinate2D = manager.location?.coordinate else { return }
-           let initialRegionSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-           let initialRegion = MKCoordinateRegion(center: locationValue, span: initialRegionSpan)
+        guard let locationValue : CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        let initialRegionSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let initialRegion = MKCoordinateRegion(center: locationValue, span: initialRegionSpan)
            
-           // display user's current location on the map
-           mapView.setRegion(initialRegion, animated: true)
+        // display user's current location on the map
+        mapView.setRegion(initialRegion, animated: false)
            
-           // place an annotation/pin on the user's location in the map display
-           let userLocationPin : MKPointAnnotation = MKPointAnnotation()
-           userLocationPin.coordinate =
-           CLLocationCoordinate2DMake(locationValue.latitude, locationValue.longitude)
-           mapView.addAnnotation(userLocationPin)
+        // place an annotation/pin on the user's location in the map display
+        let userLocationPin : MKPointAnnotation = MKPointAnnotation()
+        userLocationPin.coordinate = CLLocationCoordinate2DMake(locationValue.latitude, locationValue.longitude)
+        userLocationPin.title = "YOU"
+        userLocationPin.subtitle = "this is you!"
+        mapView.addAnnotation(userLocationPin)
            
            print("location = \(locationValue.latitude) \(locationValue.longitude)")
        }
@@ -60,6 +62,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                mapView.addAnnotation(planAnnotation)
            }
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+        if annotation.title == "YOU" {
+            annotationView.markerTintColor = .systemIndigo
+            annotationView.glyphImage = UIImage(named: "bmoicon")
+        } else {
+            //if annotation.subtitle.
+            annotationView.markerTintColor = .systemOrange
+            annotationView.glyphImage = UIImage(named: "connecticon")
+        }
+        return annotationView
+    }
 
     // gets the coordinates of the address
     private func loc_coord(plan: Plan, completionHandler: @escaping (CLLocationCoordinate2D, NSError?) -> Void) {
@@ -77,15 +92,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
        }
     
     func determineCurrentLocation() {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.requestAlwaysAuthorization()
-            
-            if CLLocationManager.locationServicesEnabled() {
-                locationManager.delegate = self
-                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                locationManager.startUpdatingLocation()
-            }
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
         }
+    }
     
     @objc func backTap() {
         //set values for signup to null;
