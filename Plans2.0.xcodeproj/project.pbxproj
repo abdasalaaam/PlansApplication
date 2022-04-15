@@ -28,7 +28,6 @@
 		DDCADC9F27ED020F005E23FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADC9E27ED020F005E23FC /* LoginViewController.swift */; };
 		DDCADCA127ED0634005E23FC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCADCA027ED0634005E23FC /* MapViewController.swift */; };
 		DDE084D027F236010064508D /* BackEndConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE084CF27F236010064508D /* BackEndConnection.swift */; };
-		DDE084D227F23EE40064508D /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE084D127F23EE40064508D /* CreatePlanViewController.swift */; };
 		DDFF1C3527C70C4B00951E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3427C70C4B00951E00 /* AppDelegate.swift */; };
 		DDFF1C3727C70C4B00951E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3627C70C4B00951E00 /* SceneDelegate.swift */; };
 		DDFF1C3927C70C4B00951E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C3827C70C4B00951E00 /* ViewController.swift */; };
@@ -266,7 +265,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					DDFF1C3027C70C4B00951E00 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -345,7 +344,6 @@
 				DDFF1C3927C70C4B00951E00 /* ViewController.swift in Sources */,
 				DDABE5412808B5AE005B3278 /* UIContentConfiguration+Stateless.swift in Sources */,
 				DDCADC9A27ECEF93005E23FC /* EventListViewController.swift in Sources */,
-				DDE084D227F23EE40064508D /* CreatePlanViewController.swift in Sources */,
 				DDFF1C3527C70C4B00951E00 /* AppDelegate.swift in Sources */,
 				DD8CCA5327FFAEA600C37C10 /* User.swift in Sources */,
 				DDFF1C3727C70C4B00951E00 /* SceneDelegate.swift in Sources */,
@@ -462,7 +460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -517,7 +515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
