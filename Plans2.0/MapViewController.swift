@@ -47,23 +47,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
            print("location = \(locationValue.latitude) \(locationValue.longitude)")
        }
     
-    private func dayText(date : Date) -> String {
-        return ""
-    }
-    
-    private func timeText(date: Date) -> String {
-        return ""
-    }
-    
-    private func addMapOverlay() {
+    func addMapOverlay() {
         for plan in activeUser.plans {
             let planAnnotation : MKPointAnnotation = MKPointAnnotation()
                loc_coord(plan: plan) { (completion, error) in
                     if error == nil {
                     planAnnotation.coordinate = CLLocationCoordinate2DMake(completion.latitude, completion.longitude)
                     planAnnotation.title = plan.title
-                    //planAnnotation.subtitle = "\(plan.day.formatted(date: .abbreviated, time: .omitted)) \(plan.startTime.formatted(date: .omitted, time: .shortened)) - \(plan.endTime.formatted(date: .omitted, time: .shortened))\n\(plan.address!)"
+                        planAnnotation.subtitle = "\(Plan.dayText(plan.day))\n\(Plan.timeText(plan.startTime)) - \(Plan.timeText(plan.endTime))\n\(plan.address!)"
                     print("plan location: \(planAnnotation.coordinate.latitude) \(planAnnotation.coordinate.longitude)")
+                        print("plan start date: \(plan.startTime.description)")
                     }
                     else {
                         print("error: improper coord")
