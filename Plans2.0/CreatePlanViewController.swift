@@ -11,7 +11,6 @@ class CreatePlanViewController: UIViewController {
     
     @IBOutlet weak var planName: UITextField!
     @IBOutlet weak var planAddress: UITextField!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var startTimePicker: UIDatePicker!
@@ -20,8 +19,21 @@ class CreatePlanViewController: UIViewController {
     @IBOutlet weak var planNotes: UITextView!
     
     @IBOutlet weak var createPlanButton: UIButton!
+    
     @IBOutlet weak var cancelButton: UIButton!
     
+    private let successPlan: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGreen
+        label.text = "Plan Created Successfully!"
+        return label
+    }();
+    private let backToMap: UILabel = {
+        let label1 = UILabel()
+        label1.textColor = .systemGreen
+        label1.text = "Press Cancel To Return to Map"
+        return label1
+    }();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +51,13 @@ class CreatePlanViewController: UIViewController {
         let startPicker1 = self.datePicker.date.description;
         let addressName = self.planAddress.text!
         let planNotes1 = self.planNotes.text!
-        Plan.samplePlanList.append(Plan(title: planName1, date: datePicker1, startTime1: startPicker1, endTime1: self.endTimePicker.date.description, address: addressName, notes: planNotes1, owner: User.sampleUser))
-        
+        Plan.samplePlanList.append(Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser));
+        view.addSubview(successPlan);
+        view.addSubview(backToMap);
+        successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50);
+        backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50);
     }
     
-
     /*
     // MARK: - Navigation
 
