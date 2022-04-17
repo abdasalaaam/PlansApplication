@@ -57,6 +57,46 @@ class DBManager {
         print(message)
         return message
     }
+    
+    public func getRequest(_ url : URL, _ parameters: [String: Any]) -> String {
+        var request = URLRequest(url: url)
+        var message: String = "No Response Found"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "GET"
+        request.httpBody = parameters.percentEncoded()
+        
+        let sem = DispatchSemaphore.init(value: 0)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            defer { sem.signal() }
+            guard let data = data,
+                let response = response as? HTTPURLResponse,
+                error == nil else {                                              // check for fundamental networking error
+                print("error", error ?? "Unknown error")
+                return
+            }
+
+            guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
+                print("statusCode should be 2xx, but is \(response.statusCode)")
+                print("response = \(response)")
+                return
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+                
+            print("responseString = \(responseString!)")
+            if let data = responseString {
+                let jsonData = data.data(using: .utf8)!
+                let resp: PostStruct = try! JSONDecoder().decode(PostStruct.self, from: jsonData)
+                message = resp.message
+            }
+        }
+        task.resume()
+        sem.wait()
+        print(message)
+        return message
+    }
+
 }
 extension Dictionary {
     func percentEncoded() -> Data? {

@@ -29,7 +29,6 @@ class LoginViewController: UIViewController {
         return label;
     }();
     
-    private var currentUser = User(fullName: "Alex Pallozzi", userName: "Zandi102", email: "alexanderpallozzi@gmail.com", phone: 9784939211, age: 21, password: "Hi123");
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton?.addTarget(self, action: #selector(login), for: .touchUpInside)
@@ -40,22 +39,49 @@ class LoginViewController: UIViewController {
     }
     
     @objc func login (){
-        if (currentUser.userName == self.usernameLogin.text && currentUser.password == passwordLogin.text && currentUser.email == emailLogin.text) {
-            switchScreen();
-            usernameLogin.text = "";
-            passwordLogin.text = "";
-            emailLogin.text = "";
-            phoneNumberLogin.text = "";
-            label.frame = CGRect.init(x: view.frame.size.width - 1000, y: view.frame.size.height - 300, width: view.frame.size.width - 40, height: 50);
-        }
-        
-        else {
+        let passLength = passwordLogin.text!;
+        let userLength = passwordLogin.text!;
+        if(passLength.count < 7 || userLength.count < 2) {
             view.addSubview(label);
-            label.frame = CGRect.init(x: view.frame.size.width - 285, y: view.frame.size.height - 350, width: view.frame.size.width - 40, height: 50);
+            label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+            label.textAlignment = .center
+            label.text = "Invalid user credentials."
             usernameLogin.text = "";
             passwordLogin.text = "";
             emailLogin.text = "";
             phoneNumberLogin.text = "";
+        }
+        else {
+            let db = DBManager();
+            let url = URL(string: "http://abdasalaam.com/Functions/login.php")!
+            let parameters: [String: Any] = [
+                "username":usernameLogin.text!,
+                "password":passwordLogin.text!,
+            ]
+            let message = db.postRequest(url, parameters)
+            if (message == "login successful") {
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                usernameLogin.text = "";
+                passwordLogin.text = "";
+                emailLogin.text = "";
+                phoneNumberLogin.text = "";
+                //THIS PUBLIC USERNAME VAR WILL ONLY BE INSTANTIATED IF THERE IS SUCCESSFUL LOGIN
+                //publicUsername will be used in other view controllers to find the info related to the user logged in
+                switchScreen();
+            }
+            else if (message == "login unsuccessful") {
+                print(message)
+                view.addSubview(label);
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                label.textAlignment = .center
+                label.text = "Please make sure the credentials are correct."
+            }
+            else {
+                view.addSubview(label);
+                label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                label.textAlignment = .center
+                label.text = "Invalid request"
+            }
         }
     }
     
