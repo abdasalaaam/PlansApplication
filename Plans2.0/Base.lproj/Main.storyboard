@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="duN-WY-VRd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="duN-WY-VRd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -411,13 +412,16 @@
                                 <color key="separatorColor" red="0.86438983680000003" green="0.46792858840000001" blue="0.25784510370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="75" id="yzc-Xv-152">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yzc-Xv-152" id="e8D-4t-LbK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.018393488600000001" green="0.058848030869999998" blue="0.1887350082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="dWt-Ur-QJP" kind="show" id="z8f-dt-7mV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -475,6 +479,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2P-cN-U52" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5634.7826086956529" y="383.70535714285711"/>
+        </scene>
+        <!--Plan Detail View Controller-->
+        <scene sceneID="M5q-wh-gdl">
+            <objects>
+                <viewController storyboardIdentifier="Plan Detail View Controller" title="Plan Detail View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWt-Ur-QJP" customClass="PlanDetailViewController" customModule="Plans2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2iN-Ab-CMf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Gr-OA-9QJ">
+                                <rect key="frame" x="0.0" y="134" width="414" height="638"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" systemColor="systemOrangeColor"/>
+                                <color key="sectionIndexColor" systemColor="systemOrangeColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.1047846138" green="0.1019335365" blue="0.24578128220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U5b-w0-Xud">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U5b-w0-Xud" id="7Wg-0k-RWT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GWk-Q9-OwN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Gr-OA-9QJ" firstAttribute="leading" secondItem="GWk-Q9-OwN" secondAttribute="leading" id="4Yf-cP-m0u"/>
+                            <constraint firstItem="3Gr-OA-9QJ" firstAttribute="top" secondItem="GWk-Q9-OwN" secondAttribute="top" constant="90" id="IX9-Vt-BPY"/>
+                            <constraint firstItem="3Gr-OA-9QJ" firstAttribute="trailing" secondItem="GWk-Q9-OwN" secondAttribute="trailing" id="aN5-BX-gAU"/>
+                            <constraint firstItem="GWk-Q9-OwN" firstAttribute="bottom" secondItem="3Gr-OA-9QJ" secondAttribute="bottom" constant="90" id="ePH-zB-k7q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="OBb-1y-1i1"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="planTableView" destination="3Gr-OA-9QJ" id="84q-t6-u7N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSm-zV-vsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7234.7826086956529" y="585.9375"/>
         </scene>
         <!--User Profile-->
         <scene sceneID="tne-QT-ifu">
@@ -634,7 +684,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.018393488600000001" green="0.058848030869999998" blue="0.1887350082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="kR3-v7-D7n">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kR3-v7-D7n" id="uPy-Dp-rMA">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -694,7 +744,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.018393488600000001" green="0.058848030869999998" blue="0.1887350082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="cwS-fT-2AC">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cwS-fT-2AC" id="faO-RM-Hbx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -763,7 +813,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.018393488600000001" green="0.058848030869999998" blue="0.1887350082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="pGO-hH-GtA">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pGO-hH-GtA" id="Ggi-it-vYx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -856,7 +906,7 @@
         <segue reference="Jje-wv-eE3"/>
         <segue reference="C1Q-Um-tAr"/>
         <segue reference="2ey-v6-S0Z"/>
-        <segue reference="ar2-60-V7U"/>
+        <segue reference="fTt-f8-CqH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.86438983680000003" green="0.46792858840000001" blue="0.25784510370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

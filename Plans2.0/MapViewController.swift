@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     if error == nil {
                     planAnnotation.coordinate = CLLocationCoordinate2DMake(completion.latitude, completion.longitude)
                     planAnnotation.title = plan.title
-                        planAnnotation.subtitle = "\(Plan.dayText(plan.day))\n\(Plan.timeText(plan.startTime)) - \(Plan.timeText(plan.endTime))\n\(plan.address!)"
+                    planAnnotation.subtitle = "\(Plan.dayText(plan.day))\n\(Plan.timeText(plan.startTime)) - \(Plan.timeText(plan.endTime))\n\(plan.address!)"
                     print("plan location: \(planAnnotation.coordinate.latitude) \(planAnnotation.coordinate.longitude)")
                         print("plan start date: \(plan.startTime.description)")
                     }
