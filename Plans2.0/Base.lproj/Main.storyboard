@@ -520,11 +520,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="NaB-U5-URh">
-                                <rect key="frame" x="20" y="92" width="180" height="207"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
-                            </imageView>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hi123" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFo-cz-2ev">
                                 <rect key="frame" x="20" y="384" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -614,6 +609,12 @@
                                     <color key="titleColor" systemColor="systemOrangeColor"/>
                                 </state>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NaB-U5-URh">
+                                <rect key="frame" x="20" y="110" width="190" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.01076690573" green="0.05219753832" blue="0.1848035455" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -902,12 +903,11 @@
     <color key="tintColor" red="0.86438983680000003" green="0.46792858840000001" blue="0.25784510370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="IMG_1486" width="523" height="191"/>
-        <image name="ProfilePicture" width="2759" height="3230"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="106"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
+        <image name="paperplane.fill" catalog="system" width="32" height="32"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>

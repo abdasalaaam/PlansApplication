@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         saveChangesButton!.frame = CGRect.init(x: 0, y: view.frame.size.height - 250, width: self.view.bounds.width, height: 100);
         userTextField.text = User.sampleUser.userName
         userPasswordField.text = User.sampleUser.password
-        //userEmailField.text = "";
+        userEmailField.text = User.sampleUser.fullName;
        // userTextField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
         //userPasswordField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
         
