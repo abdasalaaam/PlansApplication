@@ -10,51 +10,51 @@ import UIKit
 class PlanDetailViewController : UIViewController {
     
     typealias PlanChangeAction = (Plan) -> Void
-
-    private var plan : Plan?
+    private var plan : Plan = Plan(title: "", startTime: Date(), endTime: Date(), address: "", notes: "", owner: User())
     private var workingPlan : Plan?
     private var dataSource : UITableViewDataSource?
     
     private var planEditAction : PlanChangeAction?
     
-    @IBOutlet weak var planTableView : UITableView!
+    @IBOutlet weak var planTitleField: UITextField!
+    
+    @IBOutlet weak var planAddressField: UITextField!
+    
+    @IBOutlet weak var dayPicker: UIDatePicker!
+    
+    @IBOutlet weak var startTimePicker: UIDatePicker!
+    
+    @IBOutlet weak var endTimePicker: UIDatePicker!
+    
+    @IBOutlet weak var notesView: UITextView!
+    
+    
+    @IBOutlet weak var backButton: UIButton!
     
     func configure(with plan : Plan, editAction : PlanChangeAction? = nil) {
         self.plan = plan
         self.workingPlan = plan
         self.planEditAction = editAction
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        planTableView.delegate = self
-        planTableView.dataSource = self
+        
+        planTitleField.text = plan.title
+        planTitleField.allowsEditingTextAttributes = false
+        planAddressField.text = plan.address
+        planAddressField.allowsEditingTextAttributes = false
+        dayPicker.date = plan.startTime
+        dayPicker.endEditing(true)
+        startTimePicker.date = plan.startTime
+        startTimePicker.endEditing(true)
+        endTimePicker.date = plan.endTime
+        endTimePicker.endEditing(true)
+        notesView.text = plan.notes
+        notesView.allowsEditingTextAttributes = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let navigationController = navigationController,
-           !navigationController.isToolbarHidden {
-            navigationController.setToolbarHidden(true, animated: animated)
-        }
-    }
-    
-    
-}
-
-extension PlanDetailViewController : UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0;
-    }
-
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let planDetailCell = tableView.dequeueReusableCell(withIdentifier: "plan_cell", for: indexPath)
-        
-        
-        return planDetailCell
+    @objc func backTap() {
+        //set values for signup to null;
     }
 }

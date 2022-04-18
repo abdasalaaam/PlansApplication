@@ -13,18 +13,39 @@ class EventListViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBAction func unwindToList(_ sender: UIStoryboardSegue) {}
+    
+    static let detailSegueID = "PlanDetailSegue"
+    
     var filteredPlans = [Plan]();
     //var planList = Plan.samplePlanList
     //var plans = ["Pick Up Basketball by , Date: 4/14/2021. Time: 4:21. Address: 11 Tuttle Drive. User: ajp236", "Pick Up Soccer, Date: 4/14/2021. Time: 4:54. Address: 23 Pico Ave. User: ass112", "Birthday Party, Date: 4/14/2021. Time: 4:21. User: zach324", "Birthday Party, Date: 4/14/2021. Time: 10:56. User: joey243"];
     var searchBarIsFull = false;
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Self.detailSegueID,
+            let dest = segue.destination as? PlanDetailViewController,
+            let cell = sender as? UITableViewCell,
+           let indexPath = self.tableView.indexPath(for: cell) {
+            let rowIndex = indexPath.row
+            guard let plan : Plan = getPlan(at: rowIndex) else {
+                fatalError("couldn't get plan")
+            }
+            dest.configure(with: plan, editAction: { plan in
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            })
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self;
         tableView.dataSource = self;
         searchBar.delegate = self;
         searchBar.searchTextField.textColor = .orange
-
     }
+    
+    
     
     func filterContentForSearchText(searchText: String) {
         filteredPlans = Plan.samplePlanList.filter({(plan: Plan) -> Bool in
@@ -46,6 +67,10 @@ class EventListViewController: UIViewController {
     func isFiltering() -> Bool {
         //searchField.reloadData();
         return !isSearchBarEmpty();
+    }
+    
+    func getPlan(at rowIndex: Int) -> Plan? {
+        return filteredPlans[rowIndex]
     }
 }
 extension EventListViewController : UITableViewDelegate {
