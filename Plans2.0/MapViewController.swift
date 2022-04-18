@@ -7,7 +7,6 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     let activeUser : User = User.sampleUser;
-    var locationManager = CLLocationManager()
     
     @IBOutlet weak var profileButton: UIButton!
     
@@ -19,13 +18,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
     
+    var locationManager = CLLocationManager()
     override func viewDidLoad() {
        super.viewDidLoad();
        //view.backgroundColor = .systemBlue;
        //profilePicture.frame = CGRect(x: 30, y: 150, width: 100, height: 100);
        backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
         determineCurrentLocation();
-        addMapOverlay();
+        addMapOverlay(planList: activeUser.plans);
         mapView.delegate = self
     }
     
@@ -34,7 +34,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         guard let locationValue : CLLocationCoordinate2D = manager.location?.coordinate else { return }
         let initialRegionSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let initialRegion = MKCoordinateRegion(center: locationValue, span: initialRegionSpan)
-           
         // display user's current location on the map
         mapView.setRegion(initialRegion, animated: false)
            
@@ -48,8 +47,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("location = \(locationValue.latitude) \(locationValue.longitude)")
     }
     
-    func addMapOverlay() {
-        for plan in activeUser.plans {
+    func addMapOverlay(planList : [Plan]) {
+        for plan in planList {
             let planAnnotation : MKPointAnnotation = MKPointAnnotation()
                loc_coord(plan: plan) { (completion, error) in
                     if error == nil {

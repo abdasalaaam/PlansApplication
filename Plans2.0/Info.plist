@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Help</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>HElp?</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -27,10 +31,6 @@
 	<true/>
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Let me in&quot;</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Allow app to know your current location&quot;</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

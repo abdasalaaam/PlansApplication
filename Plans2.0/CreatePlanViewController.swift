@@ -68,11 +68,19 @@ class CreatePlanViewController: UIViewController {
         ]
         let message = db.postRequest(url, parameters)
         
-        Plan.samplePlanList.append(Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser));
+        let planToAdd = Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser);
+        
+        Plan.samplePlanList.append(planToAdd);
         view.addSubview(successPlan);
         view.addSubview(backToMap);
         successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50);
         backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50);
+        if Plan.validate(plan: planToAdd) == nil {
+            print("Invalid Address or Date/time");
+        }
+        else {
+            User.sampleUser.addPlan(Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser));
+        }
     }
     
     /*
