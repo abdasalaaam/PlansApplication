@@ -36,9 +36,13 @@ class ViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad();
-        //view.backgroundColor = .systemOrange;
-        //profilePicture.frame = CGRect(x: 30, y: 150, width: 100, height: 100)
-        saveChangesButton?.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        saveChangesButton?.addTarget(self, action: #selector(buttonTap), for: .touchUpInside);
+        saveChangesButton!.frame = CGRect.init(x: 0, y: view.frame.size.height - 250, width: self.view.bounds.width, height: 100);
+       // userTextField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
+        //userPasswordField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
+        
+        //saveChangesButton!.frame
+        
         
     }
     @objc func buttonTap() {

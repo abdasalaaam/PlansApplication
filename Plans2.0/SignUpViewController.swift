@@ -64,8 +64,8 @@ public class SignUpViewController: UIViewController {
                 label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
                 usernameField.text = "";
                 passwordField.text = "";
-                emailField.text = "";
-                phoneNumberField.text = "";
+                //emailField.text = "";
+                //phoneNumberField.text = "";
                 //THIS PUBLIC USERNAME VAR WILL ONLY BE INSTANTIATED IF THERE IS SUCCESSFUL LOGIN
                 //publicUsername will be used in other view controllers to find the info related to the user logged in
                 publicUsername = usernameField.text!;

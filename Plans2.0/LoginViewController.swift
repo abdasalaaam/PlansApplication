@@ -63,8 +63,8 @@ class LoginViewController: UIViewController {
                 label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
                 usernameLogin.text = "";
                 passwordLogin.text = "";
-                emailLogin.text = "";
-                phoneNumberLogin.text = "";
+                //emailLogin.text = "";
+                //phoneNumberLogin.text = "";
                 //THIS PUBLIC USERNAME VAR WILL ONLY BE INSTANTIATED IF THERE IS SUCCESSFUL LOGIN
                 //publicUsername will be used in other view controllers to find the info related to the user logged in
                 switchScreen();
