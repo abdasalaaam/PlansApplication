@@ -35,6 +35,7 @@
 		DDFF1C4127C70C4D00951E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFF1C3F27C70C4D00951E00 /* LaunchScreen.storyboard */; };
 		DDFF1C4C27C70C4D00951E00 /* Plans2_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C4B27C70C4D00951E00 /* Plans2_0Tests.swift */; };
 		DDFF1C5727C70C4D00951E00 /* Plans2_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF1C5627C70C4D00951E00 /* Plans2_0UITests.swift */; };
+		FA38FCC6280B845D0029D101 /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA38FCC5280B845D0029D101 /* PlanDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		DDFF1C5227C70C4D00951E00 /* Plans2.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plans2.0UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFF1C5627C70C4D00951E00 /* Plans2_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plans2_0UITests.swift; sourceTree = "<group>"; };
 		DDFF1C5827C70C4D00951E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA38FCC5280B845D0029D101 /* PlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				DD6C5AD02804D8DA00854929 /* FriendListViewController.swift */,
 				DD6C5AD22804E16A00854929 /* SearchViewController.swift */,
 				3EF02B58280A0BE1000893A8 /* DBManager.swift */,
+				FA38FCC5280B845D0029D101 /* PlanDetailViewController.swift */,
 			);
 			path = Plans2.0;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				DDCADC9A27ECEF93005E23FC /* EventListViewController.swift in Sources */,
 				DDFF1C3527C70C4B00951E00 /* AppDelegate.swift in Sources */,
 				DD8CCA5327FFAEA600C37C10 /* User.swift in Sources */,
+				FA38FCC6280B845D0029D101 /* PlanDetailViewController.swift in Sources */,
 				DDFF1C3727C70C4B00951E00 /* SceneDelegate.swift in Sources */,
 				DD8CCA572803443600C37C10 /* InviteViewController.swift in Sources */,
 				DD8CCA4D27FFAE8F00C37C10 /* Plan.swift in Sources */,
