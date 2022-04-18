@@ -46,8 +46,8 @@ class DBManager {
             let responseString = String(data: data, encoding: .utf8)
                 
             print("responseString = \(responseString!)")
-            if let data = responseString {
-                let jsonData = data.data(using: .utf8)!
+            if let dataK = responseString {
+                let jsonData = dataK.data(using: .utf8)!
                 let resp: PostStruct = try! JSONDecoder().decode(PostStruct.self, from: jsonData)
                 message = resp.message
             }
@@ -58,12 +58,13 @@ class DBManager {
         return message
     }
     
-    public func getRequest(_ url : URL, _ parameters: [String: Any]) -> String {
+    public func getRequest(_ url : URL) -> String {
         var request = URLRequest(url: url)
         var message: String = "No Response Found"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
-        request.httpBody = parameters.percentEncoded()
+        
+
         
         let sem = DispatchSemaphore.init(value: 0)
         
@@ -83,13 +84,8 @@ class DBManager {
             }
             
             let responseString = String(data: data, encoding: .utf8)
-                
+            message = responseString!
             print("responseString = \(responseString!)")
-            if let data = responseString {
-                let jsonData = data.data(using: .utf8)!
-                let resp: PostStruct = try! JSONDecoder().decode(PostStruct.self, from: jsonData)
-                message = resp.message
-            }
         }
         task.resume()
         sem.wait()
@@ -112,7 +108,7 @@ extension Dictionary {
 
 extension CharacterSet {
     static let urlQueryValueAllowed: CharacterSet = {
-        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
 
         var allowed = CharacterSet.urlQueryAllowed

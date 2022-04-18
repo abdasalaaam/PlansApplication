@@ -49,8 +49,25 @@ class CreatePlanViewController: UIViewController {
         let planName1 = self.planName.text!
         let datePicker1 = self.datePicker.date.description;
         let startPicker1 = self.datePicker.date.description;
+        let endPicker1 = self.datePicker.date.description;
         let addressName = self.planAddress.text!
         let planNotes1 = self.planNotes.text!
+        let longitude : Double = 5.0;
+        let latitude : Double = 5.0;
+        
+        let db = DBManager();
+        let url = URL(string: "http://abdasalaam.com/Functions/createPlan.php")!
+        let parameters: [String: Any] = [
+            "plan_name":planName1,
+            // "username":passwordField.text!, This must take the username from the global User class
+            "startTime":startPicker1,
+            "endTime":endPicker1,
+            "date":datePicker1,
+            "longitude":longitude,
+            "latitude":latitude
+        ]
+        let message = db.postRequest(url, parameters)
+        
         Plan.samplePlanList.append(Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser));
         view.addSubview(successPlan);
         view.addSubview(backToMap);

@@ -14,7 +14,6 @@
 		DD8CCA4F27FFAE9900C37C10 /* PlanListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA4E27FFAE9900C37C10 /* PlanListStyle.swift */; };
 		DD8CCA5327FFAEA600C37C10 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA5227FFAEA600C37C10 /* User.swift */; };
 		DD8CCA572803443600C37C10 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CCA562803443600C37C10 /* InviteViewController.swift */; };
-		DDABE52F2808A364005B3278 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDABE52E2808A363005B3278 /* MapKit.framework */; };
 		DDABE5412808B5AE005B3278 /* UIContentConfiguration+Stateless.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5402808B5AE005B3278 /* UIContentConfiguration+Stateless.swift */; };
 		DDABE5452808B5BA005B3278 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5442808B5BA005B3278 /* CreatePlanViewController.swift */; };
 		DDABE5472808B5BF005B3278 /* UIView+PinnedSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABE5462808B5BF005B3278 /* UIView+PinnedSubview.swift */; };
@@ -63,7 +62,6 @@
 		DD8CCA4E27FFAE9900C37C10 /* PlanListStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanListStyle.swift; path = ../../Models/PlanListStyle.swift; sourceTree = "<group>"; };
 		DD8CCA5227FFAEA600C37C10 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../Models/User.swift; sourceTree = "<group>"; };
 		DD8CCA562803443600C37C10 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
-		DDABE52E2808A363005B3278 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DDABE5402808B5AE005B3278 /* UIContentConfiguration+Stateless.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIContentConfiguration+Stateless.swift"; sourceTree = "<group>"; };
 		DDABE5442808B5BA005B3278 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		DDABE5462808B5BF005B3278 /* UIView+PinnedSubview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinnedSubview.swift"; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDABE52F2808A364005B3278 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,14 +117,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DDABE52D2808A363005B3278 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DDABE52E2808A363005B3278 /* MapKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DDFF1C2827C70C4B00951E00 = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +124,6 @@
 				DDFF1C4A27C70C4D00951E00 /* Plans2.0Tests */,
 				DDFF1C5527C70C4D00951E00 /* Plans2.0UITests */,
 				DDFF1C3227C70C4B00951E00 /* Products */,
-				DDABE52D2808A363005B3278 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

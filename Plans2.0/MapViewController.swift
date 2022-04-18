@@ -28,6 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         addMapOverlay();
         mapView.delegate = self
     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            // get the current location of the user
         guard let locationValue : CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -44,8 +45,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         userLocationPin.subtitle = "this is you!"
         mapView.addAnnotation(userLocationPin)
            
-           print("location = \(locationValue.latitude) \(locationValue.longitude)")
-       }
+        print("location = \(locationValue.latitude) \(locationValue.longitude)")
+    }
     
     func addMapOverlay() {
         for plan in activeUser.plans {

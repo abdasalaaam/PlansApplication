@@ -50,6 +50,7 @@ class EventListViewController: UIViewController {
 }
 extension EventListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row) 
     }
 }
 
