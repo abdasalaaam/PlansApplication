@@ -38,6 +38,9 @@ class ViewController: UIViewController {
         super.viewDidLoad();
         saveChangesButton?.addTarget(self, action: #selector(buttonTap), for: .touchUpInside);
         saveChangesButton!.frame = CGRect.init(x: 0, y: view.frame.size.height - 250, width: self.view.bounds.width, height: 100);
+        userTextField.text = User.sampleUser.userName
+        userPasswordField.text = User.sampleUser.password
+        //userEmailField.text = "";
        // userTextField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
         //userPasswordField.frame = CGRect.init(x: 0, y: view.frame.size.height - 300, width: self.view.bounds.width, height: 100);
         
@@ -46,7 +49,7 @@ class ViewController: UIViewController {
         
     }
     @objc func buttonTap() {
-        //put all information into database
+        User.sampleUser.fullName = userEmailField.text!;
     }
     
     @IBAction func unwindToProfile(_ sender: UIStoryboardSegue) {}

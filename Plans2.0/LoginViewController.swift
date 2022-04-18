@@ -48,8 +48,8 @@ class LoginViewController: UIViewController {
             label.text = "Invalid user credentials."
             usernameLogin.text = "";
             passwordLogin.text = "";
-            emailLogin.text = "";
-            phoneNumberLogin.text = "";
+            User.sampleUser = User(userName: usernameLogin.text!, password: passwordLogin.text!)
+            //phoneNumberLogin.text = "";
         }
         else {
             let db = DBManager();
@@ -63,6 +63,7 @@ class LoginViewController: UIViewController {
                 label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
                 usernameLogin.text = "";
                 passwordLogin.text = "";
+                User.sampleUser = User(userName: usernameLogin.text!, password: passwordLogin.text!)
                 //emailLogin.text = "";
                 //phoneNumberLogin.text = "";
                 //THIS PUBLIC USERNAME VAR WILL ONLY BE INSTANTIATED IF THERE IS SUCCESSFUL LOGIN

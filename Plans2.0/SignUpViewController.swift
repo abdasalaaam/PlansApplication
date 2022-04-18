@@ -49,8 +49,8 @@ public class SignUpViewController: UIViewController {
             label.text = "Invalid user credentials."
             usernameField.text = "";
             passwordField.text = "";
-            emailField.text = "";
-            phoneNumberField.text = "";
+            //emailField.text = "";
+            //phoneNumberField.text = "";
         }
         else {
             let db = DBManager();
