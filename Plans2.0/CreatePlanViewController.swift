@@ -48,8 +48,8 @@ class CreatePlanViewController: UIViewController {
     }
     
     @objc func createPlan() {
-        
         // create plan in the DB
+        /*
         let planName1 = self.planName.text!
         let datePicker1 = self.datePicker.date.description;
         let startPicker1 = self.datePicker.date.description;
@@ -58,7 +58,9 @@ class CreatePlanViewController: UIViewController {
         let planNotes1 = self.planNotes.text!
         let longitude : Double = 5.0;
         let latitude : Double = 5.0;
+        */
         
+       /*
         let db = DBManager();
         let url = URL(string: "http://abdasalaam.com/Functions/createPlan.php")!
         let parameters: [String: Any] = [
@@ -71,30 +73,38 @@ class CreatePlanViewController: UIViewController {
             "latitude":latitude
         ]
         let message = db.postRequest(url, parameters)
+        */
         
         let day : Date = self.datePicker.date
-        let dayDifference : TimeInterval = day.timeIntervalSinceNow
+        let dayDifference : TimeInterval = day.timeIntervalSince(Date())
         let startTime : Date = self.startTimePicker.date.addingTimeInterval(dayDifference)
         let endTime   : Date = self.endTimePicker.date.addingTimeInterval(dayDifference)
-        print("day of plan: \(day.description)")
-        print("start time of plan: \(startTime.description) VS \(self.startTimePicker.date.description)")
-        print("end time of plan: \(endTime.description)")
-        // planToAdd
+        
         let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!)
         planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
         // Plan.samplePlanList.append(planToAdd);
         // User.sampleUser.plans.append(planToAdd);      // add to the user whos using
         
-        Plan.validate(planToValidate: planToAdd)
-        let plan_coord : CLLocationCoordinate2D? = planToAdd._coord ?? nil
-        if plan_coord == nil {
+        // print("day of plan: \(day.description)")
+        // print("start time of plan: \(startTime.description) VS \(self.startTimePicker.date.description)")
+        //  print("end time of plan: \(endTime.description)")
+        // planToAdd
+        // 11317 Bellflower Road, Cleveland, OH 44106
+        Plan.validate(planToValidate: planToAdd);
+        
+        if planToAdd.validated == true && planToAdd._coord == nil {
+            print("Null Check");
+            add_success = false
             print("Couldn't Add Plan, Check Inputs!")
-        } else {
+        }
+        else {
+            add_success = true
             view.addSubview(successPlan)
             view.addSubview(backToMap)
             successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50)
             backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50)
             User.sampleUser.plans.append(planToAdd)
+            print("plan added")
         }// add to the user
     }
     

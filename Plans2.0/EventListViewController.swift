@@ -79,14 +79,14 @@ extension EventListViewController : UITableViewDelegate {
         if(isFiltering()) {
             print(filteredPlans[indexPath.row].title)
         }
-        print(Plan.samplePlanList[indexPath.row].title)
+        print(activeUser.plans[indexPath.row].title)
     }
 }
 
 extension EventListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {return filteredPlans.count};
-        return Plan.samplePlanList.count;
+        return activeUser.plans.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
@@ -95,7 +95,7 @@ extension EventListViewController : UITableViewDataSource {
             currentPlan = filteredPlans[indexPath.row];
         }
         else {
-            currentPlan = Plan.samplePlanList[indexPath.row];
+            currentPlan = activeUser.plans[indexPath.row];
         }
         var cellConfig = cell.defaultContentConfiguration();
         cellConfig.text = currentPlan.title + " by " + currentPlan.owner.fullName;
