@@ -72,7 +72,7 @@ extension EventListViewController : UITableViewDelegate {
         if(isFiltering()) {
             print(filteredPlans[indexPath.row].title)
         }
-        print(User.sampleUser.plans[indexPath.row].title)
+        print(activeUser.plans[indexPath.row].title)
     }
 }
 
