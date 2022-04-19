@@ -9,6 +9,7 @@ import CoreLocation
 
 class CreatePlanViewController: UIViewController {
     //var planLimit = 3;
+    let activeUser : User = User.sampleUser
     var add_success : Bool = false
     
     @IBOutlet weak var planName: UITextField!
@@ -47,6 +48,58 @@ class CreatePlanViewController: UIViewController {
         createPlanButton?.addTarget(self, action: #selector(createPlan), for: .touchUpInside);
     }
     
+    // the plan is valid, return a plan
+    // for a plan to be valid, three things must be true:
+    // 1 - address/coordinate binding of address
+    // 2 - the start time must be greater than the current date
+    // 3 - the end time must be greater than the start time
+    // if it isn't, return nil
+    func validate(planToValidate : Plan) {
+        // the return value could either be a plan or nil value
+        // validate the start time and end time of the plan, to make sure that start time is > current date, and end time is > starttime, implemented using DeMorgan's Laws
+        if planToValidate.startTime.compare(Date()).rawValue > 0 && planToValidate.endTime.compare(planToValidate.startTime).rawValue > 0 {
+            valid_coord(plan: planToValidate) { (complete, error) in
+                if error == nil {
+                    planToValidate._coord = CLLocationCoordinate2D(latitude: complete.latitude, longitude: complete.longitude)
+                    planToValidate.validated = true;
+                    print("Coordinates have been set")
+                    print("plan is valid")
+                    print("validated? : \(planToValidate.validated.description)")
+                    self.add_success = true
+                    self.view.addSubview(self.successPlan)
+                    self.view.addSubview(self.backToMap)
+                    self.successPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
+                    self.backToMap.frame = CGRect.init(x: 95, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+                
+                    self.activeUser.plans.append(planToValidate)
+                    print("plan is valid, so plan has been added")
+                }
+                else {
+                    print("error: invalid coordinates") // throw error Plan Creation Failed
+                }
+            }
+        }
+        else {
+            // validate the coordinates of the string address
+            print("error: invalid start time and/or end time") // throw error
+        }
+    }
+    
+    // gets the coordinates of the address
+    private func valid_coord(plan: Plan, completionHandler: @escaping (CLLocationCoordinate2D, NSError?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(plan.address) { (placemarks, error) in
+            if error == nil {
+                if let placemark = placemarks?[0] {
+                    let location = placemark.location!
+                    completionHandler(location.coordinate, nil)
+                    return
+                }
+            }
+            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+           }
+       }
+    
     @objc func createPlan() {
         // create plan in the DB
         /*
@@ -82,30 +135,8 @@ class CreatePlanViewController: UIViewController {
         
         let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!)
         planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
-        // Plan.samplePlanList.append(planToAdd);
-        // User.sampleUser.plans.append(planToAdd);      // add to the user whos using
-        
-        // print("day of plan: \(day.description)")
-        // print("start time of plan: \(startTime.description) VS \(self.startTimePicker.date.description)")
-        //  print("end time of plan: \(endTime.description)")
-        // planToAdd
         // 11317 Bellflower Road, Cleveland, OH 44106
-        Plan.validate(planToValidate: planToAdd);
-        
-        if planToAdd.validated == true && planToAdd._coord == nil {
-            print("Null Check");
-            add_success = false
-            print("Couldn't Add Plan, Check Inputs!")
-        }
-        else {
-            add_success = true
-            view.addSubview(successPlan)
-            view.addSubview(backToMap)
-            successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50)
-            backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50)
-            User.sampleUser.plans.append(planToAdd)
-            print("plan added")
-        }// add to the user
+        validate(planToValidate: planToAdd)
     }
     
     /*

@@ -1,10 +1,3 @@
-//
-//  EventListViewController.swift
-//  Plans2.0
-//
-//  Created by Alex Pallozzi on 3/24/22.
-//
-
 import UIKit
 
 class EventListViewController: UIViewController {
@@ -17,8 +10,7 @@ class EventListViewController: UIViewController {
     
     static let detailSegueID = "PlanDetailSegue"
     
-    var activeUser : User = User.sampleUser
-    var filteredPlans : [Plan] = []
+    var filteredPlans = [Plan]();
     //var planList = Plan.samplePlanList
     //var plans = ["Pick Up Basketball by , Date: 4/14/2021. Time: 4:21. Address: 11 Tuttle Drive. User: ajp236", "Pick Up Soccer, Date: 4/14/2021. Time: 4:54. Address: 23 Pico Ave. User: ass112", "Birthday Party, Date: 4/14/2021. Time: 4:21. User: zach324", "Birthday Party, Date: 4/14/2021. Time: 10:56. User: joey243"];
     var searchBarIsFull = false;
@@ -49,9 +41,9 @@ class EventListViewController: UIViewController {
     
     
     func filterContentForSearchText(searchText: String) {
-        filteredPlans = activeUser.plans.filter({(plan: Plan) -> Bool in
+        filteredPlans = User.sampleUser.plans.filter({(plan: Plan) -> Bool in
             return plan.address.lowercased().contains(searchText.lowercased()) || plan.owner.fullName.lowercased().contains(searchText.lowercased()) || plan.owner.userName.lowercased().contains(searchText.lowercased()) || plan.title.lowercased().contains(searchText.lowercased()) || plan.date.lowercased().contains(searchText.lowercased());
-        })
+        });
         tableView.reloadData();
     }
     
@@ -79,14 +71,14 @@ extension EventListViewController : UITableViewDelegate {
         if(isFiltering()) {
             print(filteredPlans[indexPath.row].title)
         }
-        print(activeUser.plans[indexPath.row].title)
+        print(User.sampleUser.plans[indexPath.row].title)
     }
 }
 
 extension EventListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {return filteredPlans.count};
-        return activeUser.plans.count;
+        return User.sampleUser.plans.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
@@ -95,18 +87,32 @@ extension EventListViewController : UITableViewDataSource {
             currentPlan = filteredPlans[indexPath.row];
         }
         else {
-            currentPlan = activeUser.plans[indexPath.row];
+            currentPlan = User.sampleUser.plans[indexPath.row];
         }
         var cellConfig = cell.defaultContentConfiguration();
         cellConfig.text = currentPlan.title + " by " + currentPlan.owner.fullName;
         cellConfig.textProperties.color = .systemOrange;
-        cellConfig.secondaryText = "Date: " + Plan.dayText(currentPlan.day) + ", Time: " + Plan.timeText(currentPlan.startTime) + " - " + Plan.timeText(currentPlan.endTime) + ", Address: " + currentPlan.address;
+        cellConfig.secondaryText = "Date: " + Plan.dayText(currentPlan.day) + ", " + "Time: " + Plan.timeText(currentPlan.startTime) + ", " + "Address: " + currentPlan.address;
         cellConfig.secondaryTextProperties.color = .systemOrange;
         cell.contentConfiguration = cellConfig;
         return cell;
         
     }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+            let share = UITableViewRowAction(style: .normal, title: "Mark as Done") { action, index in
+                if self.isFiltering() == true {
+                    print("Is Filtering");
+                }
+                else {
+                    User.sampleUser.plans.remove(at: indexPath.row)
+                    tableView.reloadData()
+                }
+            }
+            share.backgroundColor = UIColor.red
+            return [share]
+        }
 }
+
 
 extension EventListViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
