@@ -10,7 +10,7 @@ import UIKit
 class PlanDetailViewController : UIViewController {
     
     typealias PlanChangeAction = (Plan) -> Void
-    private var plan : Plan = Plan(title: "", startTime: Date(), endTime: Date(), address: "", notes: "", owner: User())
+    private var plan : Plan = Plan(title: "", startTime: Date(), endTime: Date(), address: "", notes: "")
     private var workingPlan : Plan?
     private var dataSource : UITableViewDataSource?
     

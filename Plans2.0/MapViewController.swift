@@ -20,13 +20,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
-       super.viewDidLoad();
-       //view.backgroundColor = .systemBlue;
-       //profilePicture.frame = CGRect(x: 30, y: 150, width: 100, height: 100);
-       backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
+        super.viewDidLoad();
+        backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
+        mapView.delegate = self
         determineCurrentLocation();
         addMapOverlay(planList: activeUser.plans);
-        mapView.delegate = self
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -71,9 +69,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if annotation.title == "YOU" {
             annotationView.markerTintColor = .systemIndigo
             annotationView.glyphImage = UIImage(named: "bmoicon")
-        } else {
-            //if annotation.subtitle.
+        } else if annotation.title != "YOU" {
             annotationView.markerTintColor = .systemOrange
+            annotationView.glyphImage = UIImage(named: "connecticon")
+        } else {
+            annotationView.markerTintColor = .lightGray
             annotationView.glyphImage = UIImage(named: "connecticon")
         }
         return annotationView

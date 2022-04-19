@@ -5,9 +5,11 @@
 //  Created by Alex Pallozzi on 3/28/22.
 //
 import UIKit
+import CoreLocation
 
 class CreatePlanViewController: UIViewController {
     //var planLimit = 3;
+    var add_success : Bool = false
     
     @IBOutlet weak var planName: UITextField!
     @IBOutlet weak var planAddress: UITextField!
@@ -46,6 +48,8 @@ class CreatePlanViewController: UIViewController {
     }
     
     @objc func createPlan() {
+        
+        // create plan in the DB
         let planName1 = self.planName.text!
         let datePicker1 = self.datePicker.date.description;
         let startPicker1 = self.datePicker.date.description;
@@ -68,19 +72,30 @@ class CreatePlanViewController: UIViewController {
         ]
         let message = db.postRequest(url, parameters)
         
-        let planToAdd = Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser);
+        let day : Date = self.datePicker.date
+        let dayDifference : TimeInterval = day.timeIntervalSinceNow
+        let startTime : Date = self.startTimePicker.date.addingTimeInterval(dayDifference)
+        let endTime   : Date = self.endTimePicker.date.addingTimeInterval(dayDifference)
+        print("day of plan: \(day.description)")
+        print("start time of plan: \(startTime.description) VS \(self.startTimePicker.date.description)")
+        print("end time of plan: \(endTime.description)")
+        // planToAdd
+        let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!)
+        planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
+        // Plan.samplePlanList.append(planToAdd);
+        // User.sampleUser.plans.append(planToAdd);      // add to the user whos using
         
-        Plan.samplePlanList.append(planToAdd);
-        view.addSubview(successPlan);
-        view.addSubview(backToMap);
-        successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50);
-        backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50);
-        if Plan.validate(plan: planToAdd) == nil {
-            print("Invalid Address or Date/time");
-        }
-        else {
-            User.sampleUser.addPlan(Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser));
-        }
+        Plan.validate(planToValidate: planToAdd)
+        let plan_coord : CLLocationCoordinate2D? = planToAdd._coord ?? nil
+        if plan_coord == nil {
+            print("Couldn't Add Plan, Check Inputs!")
+        } else {
+            view.addSubview(successPlan)
+            view.addSubview(backToMap)
+            successPlan.frame = CGRect.init(x: 110, y: view.frame.size.height - 100, width: view.frame.size.width - 50, height: 50)
+            backToMap.frame = CGRect.init(x: 95, y: view.frame.size.height - 75, width: view.frame.size.width - 40, height: 50)
+            User.sampleUser.plans.append(planToAdd)
+        }// add to the user
     }
     
     /*

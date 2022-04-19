@@ -17,7 +17,8 @@ class EventListViewController: UIViewController {
     
     static let detailSegueID = "PlanDetailSegue"
     
-    var filteredPlans = [Plan]();
+    var activeUser : User = User.sampleUser
+    var filteredPlans : [Plan] = []
     //var planList = Plan.samplePlanList
     //var plans = ["Pick Up Basketball by , Date: 4/14/2021. Time: 4:21. Address: 11 Tuttle Drive. User: ajp236", "Pick Up Soccer, Date: 4/14/2021. Time: 4:54. Address: 23 Pico Ave. User: ass112", "Birthday Party, Date: 4/14/2021. Time: 4:21. User: zach324", "Birthday Party, Date: 4/14/2021. Time: 10:56. User: joey243"];
     var searchBarIsFull = false;
@@ -48,9 +49,9 @@ class EventListViewController: UIViewController {
     
     
     func filterContentForSearchText(searchText: String) {
-        filteredPlans = Plan.samplePlanList.filter({(plan: Plan) -> Bool in
+        filteredPlans = activeUser.plans.filter({(plan: Plan) -> Bool in
             return plan.address.lowercased().contains(searchText.lowercased()) || plan.owner.fullName.lowercased().contains(searchText.lowercased()) || plan.owner.userName.lowercased().contains(searchText.lowercased()) || plan.title.lowercased().contains(searchText.lowercased()) || plan.date.lowercased().contains(searchText.lowercased());
-        });
+        })
         tableView.reloadData();
     }
     
@@ -99,7 +100,7 @@ extension EventListViewController : UITableViewDataSource {
         var cellConfig = cell.defaultContentConfiguration();
         cellConfig.text = currentPlan.title + " by " + currentPlan.owner.fullName;
         cellConfig.textProperties.color = .systemOrange;
-        cellConfig.secondaryText = "Date: " + currentPlan.date + ", " + "Time: " + currentPlan.startTime1 + ", " + "Address: " + currentPlan.address;
+        cellConfig.secondaryText = "Date: " + Plan.dayText(currentPlan.day) + ", Time: " + Plan.timeText(currentPlan.startTime) + " - " + Plan.timeText(currentPlan.endTime) + ", Address: " + currentPlan.address;
         cellConfig.secondaryTextProperties.color = .systemOrange;
         cell.contentConfiguration = cellConfig;
         return cell;
