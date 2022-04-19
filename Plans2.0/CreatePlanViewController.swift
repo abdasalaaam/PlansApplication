@@ -55,7 +55,7 @@ class CreatePlanViewController: UIViewController {
         let longitude : Double = 5.0;
         let latitude : Double = 5.0;
         
-        let db = DBManager();
+      /*  let db = DBManager();
         let url = URL(string: "http://abdasalaam.com/Functions/createPlan.php")!
         let parameters: [String: Any] = [
             "plan_name":planName1,
@@ -64,9 +64,9 @@ class CreatePlanViewController: UIViewController {
             "endTime":endPicker1,
             "date":datePicker1,
             "longitude":longitude,
-            "latitude":latitude
-        ]
-        let message = db.postRequest(url, parameters)
+            "latitude":latitude*/
+        
+        //let message = db.postRequest(url, parameters)
         
         let planToAdd = Plan(title: planName1, date:  Plan.dayText(datePicker.date), startTime1: Plan.timeText(startTimePicker.date), endTime1: Plan.timeText(endTimePicker.date), address: addressName, notes: planNotes1, owner: User.sampleUser);
         

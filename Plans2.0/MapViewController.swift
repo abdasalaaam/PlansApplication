@@ -21,9 +21,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
        super.viewDidLoad();
-       //view.backgroundColor = .systemBlue;
-       //profilePicture.frame = CGRect(x: 30, y: 150, width: 100, height: 100);
-       backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
+        //CLLocationManager.loc
+       // locationManager.requestAlwaysAuthorization();
+        //backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
         mapView.delegate = self;
         determineCurrentLocation();
         addMapOverlay(planList: activeUser.plans);
@@ -105,9 +105,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    @objc func backTap() {
-        //set values for signup to null;
-    }
     /*
     // MARK: - Navigation
 
