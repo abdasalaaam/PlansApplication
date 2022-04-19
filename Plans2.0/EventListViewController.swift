@@ -2,6 +2,8 @@ import UIKit
 
 class EventListViewController: UIViewController {
     
+    let activeUser : User = User.sampleUser
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -11,8 +13,7 @@ class EventListViewController: UIViewController {
     static let detailSegueID = "PlanDetailSegue"
     
     var filteredPlans = [Plan]();
-    //var planList = Plan.samplePlanList
-    //var plans = ["Pick Up Basketball by , Date: 4/14/2021. Time: 4:21. Address: 11 Tuttle Drive. User: ajp236", "Pick Up Soccer, Date: 4/14/2021. Time: 4:54. Address: 23 Pico Ave. User: ass112", "Birthday Party, Date: 4/14/2021. Time: 4:21. User: zach324", "Birthday Party, Date: 4/14/2021. Time: 10:56. User: joey243"];
+    
     var searchBarIsFull = false;
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,7 +42,7 @@ class EventListViewController: UIViewController {
     
     
     func filterContentForSearchText(searchText: String) {
-        filteredPlans = User.sampleUser.plans.filter({(plan: Plan) -> Bool in
+        filteredPlans = activeUser.plans.filter({(plan: Plan) -> Bool in
             return plan.address.lowercased().contains(searchText.lowercased()) || plan.owner.fullName.lowercased().contains(searchText.lowercased()) || plan.owner.userName.lowercased().contains(searchText.lowercased()) || plan.title.lowercased().contains(searchText.lowercased()) || plan.date.lowercased().contains(searchText.lowercased());
         });
         tableView.reloadData();
@@ -78,7 +79,7 @@ extension EventListViewController : UITableViewDelegate {
 extension EventListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {return filteredPlans.count};
-        return User.sampleUser.plans.count;
+        return activeUser.plans.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
@@ -87,7 +88,7 @@ extension EventListViewController : UITableViewDataSource {
             currentPlan = filteredPlans[indexPath.row];
         }
         else {
-            currentPlan = User.sampleUser.plans[indexPath.row];
+            currentPlan = activeUser.plans[indexPath.row];
         }
         var cellConfig = cell.defaultContentConfiguration();
         cellConfig.text = currentPlan.title + " by " + currentPlan.owner.fullName;

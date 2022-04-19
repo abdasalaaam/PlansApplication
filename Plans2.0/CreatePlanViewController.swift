@@ -8,9 +8,13 @@ import UIKit
 import CoreLocation
 
 class CreatePlanViewController: UIViewController {
-    //var planLimit = 3;
-    let activeUser : User = User.sampleUser
-    var add_success : Bool = false
+    
+    // FIELDS
+    
+    let activeUser : User = User.sampleUser // represents the active user logged in, who uses the view controller
+    var add_success : Bool = false          // represents if the plan has been added to the list
+    
+    // IBOUTLETS
     
     @IBOutlet weak var planName: UITextField!
     @IBOutlet weak var planAddress: UITextField!
@@ -25,6 +29,8 @@ class CreatePlanViewController: UIViewController {
     
     @IBOutlet weak var cancelButton: UIButton!
     
+    // RESPONSE TO USER INPUTS LABEL
+    
     private let successPlan: UILabel = {
         let label = UILabel()
         label.textColor = .systemGreen
@@ -32,12 +38,31 @@ class CreatePlanViewController: UIViewController {
         return label
     }();
     private let backToMap: UILabel = {
-        let label1 = UILabel()
-        label1.textColor = .systemGreen
-        label1.text = "Press Cancel To Return to Map"
-        return label1
+        let label = UILabel()
+        label.textColor = .systemGreen
+        label.text = "Press Cancel To Return to Map"
+        return label
+    }();
+    private let failPlan: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemRed
+        label.text = "Plan Creation Failed"
+        return label
+    }();
+    private let checkAddressInput: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemOrange
+        label.text = "try a valid or different address"
+        return label
+    }();
+    private let checkTimeInput: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemOrange
+        label.text = "Check Your Inputs"
+        return label
     }();
     
+    // VIEWDIDLOAD OVERRIDE
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.setValue(UIColor.systemOrange, forKeyPath: "textColor")
@@ -54,33 +79,48 @@ class CreatePlanViewController: UIViewController {
     // 2 - the start time must be greater than the current date
     // 3 - the end time must be greater than the start time
     // if it isn't, return nil
+    // TO PROPERLY ADD A PLAN, ALL FUNCTIONALITIES TO BE CHANGED ABOUT ADDING
+    // MUST BE DONE WITHIN THIS METHOD
     func validate(planToValidate : Plan) {
         // the return value could either be a plan or nil value
-        // validate the start time and end time of the plan, to make sure that start time is > current date, and end time is > starttime, implemented using DeMorgan's Laws
+        // validate the start time and end time of the plan, to make sure that start time is > current date, and end time is > starttime
         if planToValidate.startTime.compare(Date()).rawValue > 0 && planToValidate.endTime.compare(planToValidate.startTime).rawValue > 0 {
+            // validate the address string input of the plan
+            // sample address: 11317 Bellflower Road, Cleveland, OH 44106
             valid_coord(plan: planToValidate) { (complete, error) in
                 if error == nil {
+                    // set up the plan to be a valid plan
                     planToValidate._coord = CLLocationCoordinate2D(latitude: complete.latitude, longitude: complete.longitude)
                     planToValidate.validated = true;
-                    print("Coordinates have been set")
-                    print("plan is valid")
-                    print("validated? : \(planToValidate.validated.description)")
+                    planToValidate.owner = self.activeUser
+                    self.activeUser.plans.append(planToValidate)
                     self.add_success = true
+                    // print success response to the user
                     self.view.addSubview(self.successPlan)
                     self.view.addSubview(self.backToMap)
                     self.successPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
                     self.backToMap.frame = CGRect.init(x: 95, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
-                
-                    self.activeUser.plans.append(planToValidate)
-                    print("plan is valid, so plan has been added")
+                    // print succcess to console
+                    print("plan validated? = \(planToValidate.validated.description), so plan has been added")
                 }
                 else {
+                    // print address fail response to the user
+                    self.view.addSubview(self.failPlan)
+                    self.view.addSubview(self.checkAddressInput)
+                    self.failPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
+                    self.checkAddressInput.frame = CGRect.init(x: 95, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+                    // print error to console
                     print("error: invalid coordinates") // throw error Plan Creation Failed
                 }
             }
         }
         else {
-            // validate the coordinates of the string address
+            // print time fail response to the user
+            self.view.addSubview(self.failPlan)
+            self.view.addSubview(self.checkTimeInput)
+            self.failPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
+            self.checkTimeInput.frame = CGRect.init(x: 95, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+            // print error to console
             print("error: invalid start time and/or end time") // throw error
         }
     }
@@ -100,6 +140,7 @@ class CreatePlanViewController: UIViewController {
            }
        }
     
+    // CREATEPLANBUTTONACTION
     @objc func createPlan() {
         // create plan in the DB
         /*
@@ -135,18 +176,9 @@ class CreatePlanViewController: UIViewController {
         
         let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!)
         planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
-        // 11317 Bellflower Road, Cleveland, OH 44106
-        validate(planToValidate: planToAdd)
+        
+        validate(planToValidate: planToAdd) // handle the validation and plan adding
+                                            // validation implemented this way due to the geocoder completion handler,
+                                            // no other known way to validate the address
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
