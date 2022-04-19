@@ -44,7 +44,7 @@
                                     <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="pCo-OH-mdU" kind="unwind" unwindAction="unwindToMap:" id="OX9-bg-QG9"/>
+                                    <segue destination="pCo-OH-mdU" kind="unwind" unwindAction="unwindToMap:" id="v73-Zh-Vdc"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p04-xw-KE5">
@@ -826,6 +826,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MapNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" toolbarHidden="NO" id="1mP-S6-hr5" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="t3u-GO-AVF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="os2-OZ-adR">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

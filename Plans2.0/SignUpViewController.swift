@@ -47,6 +47,7 @@ public class SignUpViewController: UIViewController {
             label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
             label.textAlignment = .center
             label.text = "Invalid user credentials."
+           
             usernameField.text = "";
             passwordField.text = "";
             //emailField.text = "";
@@ -62,6 +63,8 @@ public class SignUpViewController: UIViewController {
             let message = db.postRequest(url, parameters)
             if (message == "User created successfully") {
                 label.frame = CGRect.init(x: 0, y: view.frame.size.height - 200, width: self.view.bounds.width, height: 100);
+                User.sampleUser.setPassword(password: passwordField.text!)
+                User.sampleUser.setUsername(username: usernameField.text!)
                 usernameField.text = "";
                 passwordField.text = "";
                 //emailField.text = "";

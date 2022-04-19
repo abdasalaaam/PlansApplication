@@ -24,9 +24,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
        //view.backgroundColor = .systemBlue;
        //profilePicture.frame = CGRect(x: 30, y: 150, width: 100, height: 100);
        backButton?.addTarget(self, action: #selector(backTap), for: .touchUpInside)
+        mapView.delegate = self;
         determineCurrentLocation();
         addMapOverlay(planList: activeUser.plans);
-        mapView.delegate = self
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
