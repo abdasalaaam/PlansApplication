@@ -15,22 +15,7 @@ class EventListViewController: UIViewController {
     var filteredPlans = [Plan]();
     
     var searchBarIsFull = false;
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Self.detailSegueID,
-            let dest = segue.destination as? PlanDetailViewController,
-            let cell = sender as? UITableViewCell,
-           let indexPath = self.tableView.indexPath(for: cell) {
-            let rowIndex = indexPath.row
-            guard let plan : Plan = getPlan(at: rowIndex) else {
-                fatalError("couldn't get plan")
-            }
-            dest.configure(with: plan, editAction: { plan in
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            })
-        }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self;
@@ -38,8 +23,6 @@ class EventListViewController: UIViewController {
         searchBar.delegate = self;
         searchBar.searchTextField.textColor = .orange
     }
-    
-    
     
     func filterContentForSearchText(searchText: String) {
         filteredPlans = activeUser.plans.filter({(plan: Plan) -> Bool in
