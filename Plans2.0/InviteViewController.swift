@@ -17,7 +17,6 @@ class InviteViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!;
     
-    var invitations = ["John Smith" , "Demarcus Cousins"];
     var usersInv = User.sampleFriendList
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -31,7 +30,7 @@ class InviteViewController: UIViewController{
 }
 extension InviteViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(invitations[indexPath.row]);
+        //print(invitations[indexPath.row]);
         //
     }
 }

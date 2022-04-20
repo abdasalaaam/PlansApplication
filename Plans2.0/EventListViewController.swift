@@ -16,13 +16,13 @@ class EventListViewController: UIViewController {
     @IBAction func unwindToList(_ sender: UIStoryboardSegue) {}
     
     static let detailSegueID = "PlanDetailSegue"
-    
+    // 11317 Bellflower Road, Cleveland, OH, 44106
     var filteredPlans = [Plan]();
     //var planList = Plan.samplePlanList
     //var plans = ["Pick Up Basketball by , Date: 4/14/2021. Time: 4:21. Address: 11 Tuttle Drive. User: ajp236", "Pick Up Soccer, Date: 4/14/2021. Time: 4:54. Address: 23 Pico Ave. User: ass112", "Birthday Party, Date: 4/14/2021. Time: 4:21. User: zach324", "Birthday Party, Date: 4/14/2021. Time: 10:56. User: joey243"];
     var searchBarIsFull = false;
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Self.detailSegueID,
             let dest = segue.destination as? PlanDetailViewController,
             let cell = sender as? UITableViewCell,
@@ -35,7 +35,7 @@ class EventListViewController: UIViewController {
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             })
         }
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,9 +76,9 @@ class EventListViewController: UIViewController {
 extension EventListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(isFiltering()) {
-            print(filteredPlans[indexPath.row].title)
+            Plan.planDetailView = filteredPlans[indexPath.row];
         }
-        print(User.sampleUser.plans[indexPath.row].title)
+        Plan.planDetailView = User.sampleUser.plans[indexPath.row];
     }
 }
 
@@ -107,7 +107,7 @@ extension EventListViewController : UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
             let share = UITableViewRowAction(style: .normal, title: "Mark as Done") { action, index in
-                
+
                 if self.isFiltering() == true {
                     print("Is Filtering");
                 }

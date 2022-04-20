@@ -32,7 +32,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            // get the current location of the user
         guard let locationValue : CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        let initialRegionSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let initialRegionSpan = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let initialRegion = MKCoordinateRegion(center: locationValue, span: initialRegionSpan)
         // display user's current location on the map
         mapView.setRegion(initialRegion, animated: false)
