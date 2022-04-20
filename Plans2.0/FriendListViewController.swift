@@ -34,8 +34,7 @@ class FriendListViewController: UIViewController {
 }
 extension FriendListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(friends[indexPath.row]);
-        //invitations.remove(at: indexPath.row)
+        
     }
 }
 extension FriendListViewController : UITableViewDataSource {

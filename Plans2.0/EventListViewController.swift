@@ -49,7 +49,7 @@ class EventListViewController: UIViewController {
     
     func filterContentForSearchText(searchText: String) {
         filteredPlans = User.sampleUser.plans.filter({(plan: Plan) -> Bool in
-            return plan.address.lowercased().contains(searchText.lowercased()) || plan.owner.fullName.lowercased().contains(searchText.lowercased()) || plan.owner.userName.lowercased().contains(searchText.lowercased()) || plan.title.lowercased().contains(searchText.lowercased()) || plan.date.lowercased().contains(searchText.lowercased());
+            return plan.address.lowercased().contains(searchText.lowercased()) || plan.getOwner().fullName.lowercased().contains(searchText.lowercased()) || plan.getOwner().userName.lowercased().contains(searchText.lowercased()) || plan.title.lowercased().contains(searchText.lowercased()) || plan.date.lowercased().contains(searchText.lowercased());
         });
         tableView.reloadData();
     }
@@ -84,7 +84,9 @@ extension EventListViewController : UITableViewDelegate {
 
 extension EventListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering() {return filteredPlans.count};
+        if isFiltering() {
+            return filteredPlans.count;
+            }
         return User.sampleUser.plans.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,18 +98,18 @@ extension EventListViewController : UITableViewDataSource {
         else {
             currentPlan = User.sampleUser.plans[indexPath.row];
         }
+        print(currentPlan.getOwner().fullName + "Hi im working ")
         var cellConfig = cell.defaultContentConfiguration();
-        cellConfig.text = currentPlan.title + " by " + currentPlan.owner.fullName;
+        cellConfig.text = currentPlan.title + " by " + currentPlan.getOwner().fullName;
         cellConfig.textProperties.color = .systemOrange;
         cellConfig.secondaryText = "Date: " + Plan.dayText(currentPlan.day) + ", " + "Time: " + Plan.timeText(currentPlan.startTime) + ", " + "Address: " + currentPlan.address;
         cellConfig.secondaryTextProperties.color = .systemOrange;
         cell.contentConfiguration = cellConfig;
         return cell;
-        
     }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
             let share = UITableViewRowAction(style: .normal, title: "Mark as Done") { action, index in
-
                 if self.isFiltering() == true {
                     print("Is Filtering");
                 }
@@ -125,7 +127,6 @@ extension EventListViewController : UITableViewDataSource {
 extension EventListViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         filterContentForSearchText(searchText: searchBar.text!);
-        
     }
 }
 

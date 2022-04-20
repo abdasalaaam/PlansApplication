@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
             label.text = "Invalid user credentials."
             usernameLogin.text = "";
             passwordLogin.text = "";
-            User.sampleUser = User(userName: usernameLogin.text!, password: passwordLogin.text!)
+            //User.sampleUser = User(userName: usernameLogin.text!, password: passwordLogin.text!)
             //phoneNumberLogin.text = "";
         }
         else {

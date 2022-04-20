@@ -34,6 +34,11 @@ class CreatePlanViewController: UIViewController {
     @IBOutlet weak var createPlanButton: UIButton!
     
     @IBOutlet weak var cancelButton: UIButton!
+    private var isAddressInvalid = false
+    private var isTimeInvalid = false
+    private var isDateInvalid = false
+    private var isInvalid = false
+    private var planCreated = false
     // RESPONSE TO USER INPUTS LABEL
     private let successPlan: UILabel = {
         let label = UILabel()
@@ -59,14 +64,16 @@ class CreatePlanViewController: UIViewController {
     private let checkAddressInput: UILabel = {
         let label = UILabel()
         label.textColor = .systemOrange
-        label.text = "invalid address"
+        label.adjustsFontSizeToFitWidth = true;
+        label.text = "Check address, use format: Address, City, State, Zip"
         return label
     }();
 
     private let checkTimeInput: UILabel = {
         let label = UILabel()
         label.textColor = .systemOrange
-        label.text = "invalid start time/end time"
+        label.adjustsFontSizeToFitWidth = true;
+        label.text = "Invalid Time/Date. Make sure it hasn't yet happened!"
         return label
     }();
     // VIEWDIDLOAD OVERRIDE
@@ -78,6 +85,7 @@ class CreatePlanViewController: UIViewController {
         endTimePicker.setValue(UIColor.systemOrange, forKeyPath: "textColor")
         datePicker.overrideUserInterfaceStyle = .light
         createPlanButton?.addTarget(self, action: #selector(createPlan), for: .touchUpInside);
+        cancelButton?.addTarget(self, action: #selector(cancel), for: .touchUpInside);
 
     }
     // the plan is valid, return a plan
@@ -92,7 +100,7 @@ class CreatePlanViewController: UIViewController {
     private func validate(planToValidate : Plan) {
         // the return value could either be a plan or nil value
         // validate the start time and end time of the plan, to make sure that start time is > current date, and end time is > starttime
-        if planToValidate.startTime.compare(Date()).rawValue > 0 && planToValidate.endTime.compare(planToValidate.startTime).rawValue > 0 {
+        if planToValidate.day.compare(Date()).rawValue > 0 && planToValidate.endTime.compare(planToValidate.startTime).rawValue > 0 {
             // validate the address string input of the plan
             // sample address: 11317 Bellflower Road, Cleveland, OH 44106
             valid_coord(plan: planToValidate) { (complete, error) in
@@ -100,15 +108,31 @@ class CreatePlanViewController: UIViewController {
                     // set up the plan to be a valid plan
                     planToValidate._coord = CLLocationCoordinate2D(latitude: complete.latitude, longitude: complete.longitude)
                     planToValidate.validated = true;
-                    planToValidate.owner = self.activeUser
+                    //planToValidate.owner = self.activeUser
                     self.activeUser.plans.append(planToValidate)
                     self.add_success = true
                     
                     // print success response to the user
                     self.view.addSubview(self.successPlan)
                     self.view.addSubview(self.backToMap)
-                    self.successPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
-                    self.backToMap.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+                    self.planCreated = true;
+                    if(self.isInvalid == true) {
+                        self.failPlan.removeFromSuperview()
+                        self.isInvalid = false;
+                        //self.isTimeInvalid = false
+                    }
+                    if(self.isTimeInvalid == true) {
+                        self.checkTimeInput.removeFromSuperview()
+                    }
+                    if(self.isAddressInvalid == true) {
+                        self.checkAddressInput.removeFromSuperview()
+                        //self.isAddressInvalid = false
+                    }
+                    self.successPlan.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 100, width: self.view.bounds.width, height: 50);
+                    self.successPlan.textAlignment = .center;
+                    self.backToMap.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 75, width: self.view.bounds.width, height: 50)
+                    self.backToMap.textAlignment = .center
+
 
                     // print success details to console
                     print("plan validated? = \(planToValidate.validated.description), so plan has been added")
@@ -118,10 +142,18 @@ class CreatePlanViewController: UIViewController {
                     print("time: \(Plan.timeText(planToValidate.startTime)) - \(Plan.timeText(planToValidate.endTime))")
                 }
                 else {
+                    self.isAddressInvalid = true
+                    self.isInvalid = true
                     self.view.addSubview(self.failPlan)
                     self.view.addSubview(self.checkAddressInput)
-                    self.failPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
-                    self.checkAddressInput.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+                    if(self.isTimeInvalid == true) {
+                        self.checkTimeInput.removeFromSuperview()
+                        self.isTimeInvalid = false;
+                    }
+                    self.failPlan.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 100, width: self.view.bounds.width, height: 50);
+                    self.failPlan.textAlignment = .center;
+                    self.checkAddressInput.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 75, width: self.view.bounds.width, height: 50)
+                    self.checkAddressInput.textAlignment = .center
                     // print error details to console
                     print("error: invalid coordinates") // throw error
                     print("plan address: \(planToValidate.address ?? "niladdress")")
@@ -130,11 +162,19 @@ class CreatePlanViewController: UIViewController {
             }
         }
         else {
-            // print time fail response to the user
+            self.isTimeInvalid = true
+            self.isInvalid = true
             self.view.addSubview(self.failPlan)
             self.view.addSubview(self.checkTimeInput)
-            self.failPlan.frame = CGRect.init(x: 110, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
-            self.checkTimeInput.frame = CGRect.init(x: 95, y: self.view.frame.size.height - 75, width: self.view.frame.size.width - 40, height: 50)
+            if(self.isAddressInvalid == true) {
+                self.checkAddressInput.removeFromSuperview();
+                self.isAddressInvalid = false;
+            }
+            //self.failPlan.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 50, height: 50)
+            self.failPlan.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 100, width: self.view.bounds.width, height: 50);
+            self.failPlan.textAlignment = .center;
+            self.checkTimeInput.frame = CGRect.init(x: 0, y: self.view.frame.size.height - 75, width: self.view.bounds.width, height: 50)
+            self.checkTimeInput.textAlignment = .center
             // print error details to console
             print("error: invalid start time and/or end time") // throw error
             print("plan day: \(Plan.dayText(planToValidate.startTime))")
@@ -158,6 +198,10 @@ class CreatePlanViewController: UIViewController {
     }
     // CREATEPLANBUTTONACTION
 
+    @objc func cancel() {
+        self.add_success = false;
+        print(add_success);
+    }
     @objc func createPlan() {
 
         // create plan in the DB
@@ -185,14 +229,15 @@ class CreatePlanViewController: UIViewController {
         ]
         let message = db.postRequest(url, parameters)
         */
-        let day : Date = self.datePicker.date
-        let dayDifference : TimeInterval = day.timeIntervalSince(Date())
-        let startTime : Date = self.startTimePicker.date.addingTimeInterval(dayDifference)
-        let endTime   : Date = self.endTimePicker.date.addingTimeInterval(dayDifference)
-        let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!)
-        planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
-        validate(planToValidate: planToAdd) // handle the validation and plan adding
-                                            // validation implemented this way due to the geocoder completion handler,
-                                            // no other known way to validate the address
+        if(add_success == false) {
+            let day : Date = self.datePicker.date
+            let dayDifference : TimeInterval = day.timeIntervalSince(Date())
+            let startTime : Date = self.startTimePicker.date.addingTimeInterval(dayDifference)
+            let endTime   : Date = self.endTimePicker.date.addingTimeInterval(dayDifference)
+            let planToAdd = Plan(title: planName.text!, startTime: startTime, endTime: endTime, address: planAddress.text!, notes: planNotes.text!, owner: User(userName: "", password: "", fullName: "Me"))
+            //planToAdd.setOwner(newOwner: User.sampleUser) // get the user who is logged on
+            validate(planToValidate: planToAdd) // handle the validation and plan adding
+        }           // validation implemented this way due to the geocoder completion handler,
+                    // no other known way to validate the address
     }
 }
